@@ -1,6 +1,6 @@
 package ar.edu.ungs.prog2.smartgrids;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -12,15 +12,15 @@ public abstract class Planta {
     private String direccion;
     private double capMaxima;
     private boolean estado;
-    private LocalDate fechaFuncionamiento;
+    private LocalDateTime fechaHoraFuncionamiento;
     private String ID;
     private ArrayList<Registro> registros;
 
-    public Planta(String nombre, String direccion, double capMaxima, LocalDate fechaFuncionamiento) {
+    public Planta(String nombre, String direccion, double capMaxima, LocalDateTime fechaHoraFuncionamiento) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.capMaxima = capMaxima;
-        this.fechaFuncionamiento = fechaFuncionamiento;
+        this.fechaHoraFuncionamiento = fechaHoraFuncionamiento;
         this.estado = true;
         this.ID = UUID.randomUUID().toString();
         this.registros = new ArrayList<>();
@@ -60,8 +60,8 @@ public abstract class Planta {
         return this.registros;
     }
 
-    public LocalDate getFechaFuncionamiento() {
-        return this.fechaFuncionamiento;
+    public LocalDateTime getFechaHoraFuncionamiento() {
+        return this.fechaHoraFuncionamiento;
     }
 
     public double getCapMaxima() {
@@ -70,6 +70,6 @@ public abstract class Planta {
 
     public String toString() {
         return "Planta [nombre=" + nombre + ", direccion=" + direccion + ", capMaxima=" + capMaxima + ", estado="
-                + estado + ", fechaFuncionamiento=" + fechaFuncionamiento + ", ID=" + ID + "]";
+                + estado + ", fechaFuncionamiento=" + fechaHoraFuncionamiento + ", ID=" + ID + "]";
     }
 }

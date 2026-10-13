@@ -1,14 +1,13 @@
 package ar.edu.ungs.prog2.smartgrids;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Hidraulica extends PlantaRenovable {
     private int cantTurbinas;
     private double capacidadEmbalse;
 
-    public Hidraulica(String nombre, String direccion, double capMaxima, LocalDate fechaFuncionamiento, int ID,
-            String fuentePrimaria, double eficienciaPromedio, int cantTurbinas, double capacidadEmbalse) {
-        super(nombre, direccion, capMaxima, fechaFuncionamiento, ID, fuentePrimaria, eficienciaPromedio);
+    public Hidraulica(String nombre, String direccion, double capMaxima, LocalDateTime fechaHoraFuncionamiento, String fuentePrimaria, double eficienciaPromedio, int cantTurbinas, double capacidadEmbalse) {
+        super(nombre, direccion, capMaxima, fechaHoraFuncionamiento, fuentePrimaria, eficienciaPromedio);
         this.cantTurbinas = cantTurbinas;
         this.capacidadEmbalse = capacidadEmbalse;
     }

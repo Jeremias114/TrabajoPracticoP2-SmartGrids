@@ -3,16 +3,27 @@ package ar.edu.ungs.prog2.smartgrids;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.time.format.DateTimeParseException;
+import java.time.LocalDateTime;
 
 /**
  * SmartGrids
  */
 public class SmartGrids implements ISmartGrids {
 
-    private HashMap<Integer, Planta> plantas;
+    private HashMap<String, Planta> plantas;
 
     public SmartGrids() {
         this.plantas = new HashMap<>();
+    }
+
+    public boolean validarFechaHora(String fechaHora) {
+        try {
+            java.time.LocalDateTime.parse(fechaHora);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
 
@@ -20,32 +31,64 @@ public class SmartGrids implements ISmartGrids {
     public void registrarPlantaSolar(String nombre, String direccion, double capacidadMaxima,
             String fechaHoraPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
             double superficieCubierta, int cantidadPaneles, double horasRadiacionDiaria) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registrarPlantaSolar'");
-    }
+        
+        if(nombre == null || direccion == null || capacidadMaxima <= 0 || fechaHoraPuestaEnFuncionamiento == null || !validarFechaHora(fechaHoraPuestaEnFuncionamiento) || fuentePrimaria == null || eficienciaPromedio <= 0 || superficieCubierta <= 0 || cantidadPaneles <= 0 || horasRadiacionDiaria <= 0){
+            throw new IllegalArgumentException ("Error: Datos inválidos para registrar la planta solar.");
+        }
 
+        LocalDateTime fechaHoraPuestaEnFuncionamientoConvertida = LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento); // convierte el string a LocalDateTime
+
+        Solar plantaSolar = new Solar(nombre, direccion, capacidadMaxima, fechaHoraPuestaEnFuncionamientoConvertida, fuentePrimaria, eficienciaPromedio, superficieCubierta, cantidadPaneles, horasRadiacionDiaria);
+
+        plantas.put(plantaSolar.getID(), plantaSolar);
+
+    }
     @Override
     public void registrarPlantaEolica(String nombre, String direccion, double capacidadMaxima,
             String fechaHoraPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
             int cantidadAerogeneradores, double alturaTorres, double velocidadMinimaViento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registrarPlantaEolica'");
+        
+        if(nombre == null || direccion == null || capacidadMaxima <= 0 || fechaHoraPuestaEnFuncionamiento == null || !validarFechaHora(fechaHoraPuestaEnFuncionamiento) || fuentePrimaria == null || eficienciaPromedio <= 0 || cantidadAerogeneradores <= 0 || alturaTorres <= 0 || velocidadMinimaViento <= 0){
+            throw new IllegalArgumentException ("Error: Datos inválidos para registrar la planta eólica.");
+        }
+
+        LocalDateTime fechaHoraPuestaEnFuncionamientoConvertida = LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento); // convierte el string a LocalDateTime
+
+        Eolica plantaEolica = new Eolica(nombre, direccion, capacidadMaxima, fechaHoraPuestaEnFuncionamientoConvertida, fuentePrimaria, eficienciaPromedio, cantidadAerogeneradores, alturaTorres, velocidadMinimaViento);
+
+        plantas.put(plantaEolica.getID(), plantaEolica);
     }
 
     @Override
     public void registrarPlantaHidraulica(String nombre, String direccion, double capacidadMaxima,
             String fechaHoraPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
             int cantidadTurbinas, double capacidadEmbalse) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registrarPlantaHidraulica'");
+        
+        if(nombre == null || direccion == null || capacidadMaxima <= 0 || fechaHoraPuestaEnFuncionamiento == null || !validarFechaHora(fechaHoraPuestaEnFuncionamiento) || fuentePrimaria == null || eficienciaPromedio <= 0 || cantidadTurbinas <= 0 || capacidadEmbalse <= 0){
+            throw new IllegalArgumentException ("Error: Datos inválidos para registrar la planta hidráulica.");
+        }
+
+        LocalDateTime fechaHoraPuestaEnFuncionamientoConvertida = LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento); // convierte el string a LocalDateTime
+
+        Hidraulica plantaHidraulica = new Hidraulica(nombre, direccion, capacidadMaxima, fechaHoraPuestaEnFuncionamientoConvertida, fuentePrimaria, eficienciaPromedio, cantidadTurbinas, capacidadEmbalse);
+
+        plantas.put(plantaHidraulica.getID(), plantaHidraulica);
     }
 
     @Override
     public void registrarPlantaTermica(String nombre, String direccion, double capacidadMaxima,
             String fechaHoraPuestaEnFuncionamiento, String tipoCombustible, double objetivoEmisionesCo2PorHora,
             double capacidadAlmacenamientoCombustible) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registrarPlantaTermica'");
+        
+        if(nombre == null || direccion == null || capacidadMaxima <= 0 || fechaHoraPuestaEnFuncionamiento == null || !validarFechaHora(fechaHoraPuestaEnFuncionamiento) || tipoCombustible == null || objetivoEmisionesCo2PorHora <= 0 || capacidadAlmacenamientoCombustible <= 0){
+            throw new IllegalArgumentException ("Error: Datos inválidos para registrar la planta térmica.");
+        }
+
+        LocalDateTime fechaHoraPuestaEnFuncionamientoConvertida = LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento); // convierte el string a LocalDateTime
+
+        Termica plantaTermica = new Termica(nombre, direccion, capacidadMaxima, fechaHoraPuestaEnFuncionamientoConvertida, tipoCombustible, objetivoEmisionesCo2PorHora, capacidadAlmacenamientoCombustible);
+
+        plantas.put(plantaTermica.getID(), plantaTermica);
     }
 
     @Override

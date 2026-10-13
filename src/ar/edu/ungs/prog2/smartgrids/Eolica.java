@@ -1,15 +1,14 @@
 package ar.edu.ungs.prog2.smartgrids;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Eolica extends PlantaRenovable {
     private int cantAerogeneradores;
     private double alturaTorres;
     private double velocidadMinViento;
 
-    public Eolica(String nombre, String direccion, double capMaxima, LocalDate fechaFuncionamiento, int ID,
-            String fuentePrimaria, double eficienciaPromedio, int cantAerogeneradores, double alturaTorres, double velocidadMinViento) {
-        super(nombre, direccion, capMaxima, fechaFuncionamiento, ID, fuentePrimaria, eficienciaPromedio);
+    public Eolica(String nombre, String direccion, double capMaxima, LocalDateTime fechaHoraFuncionamiento, String fuentePrimaria, double eficienciaPromedio, int cantAerogeneradores, double alturaTorres, double velocidadMinViento) {
+        super(nombre, direccion, capMaxima, fechaHoraFuncionamiento, fuentePrimaria, eficienciaPromedio);
         this.cantAerogeneradores = cantAerogeneradores;
         this.alturaTorres = alturaTorres;
         this.velocidadMinViento = velocidadMinViento;

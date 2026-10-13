@@ -1,14 +1,14 @@
 package ar.edu.ungs.prog2.smartgrids;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Solar extends PlantaRenovable {
     private double superficieCubierta;
     private int cantPaneles;
-    private int horasRadiacion;
+    private double horasRadiacion;
 
-    public Solar(String nombre, String direccion, double capMaxima, LocalDate fechaFuncionamiento, int ID, String fuentePrimaria, double eficienciaPromedio, double superficieCubierta, int cantPaneles, int horasRadiacion) {
-        super(nombre, direccion, capMaxima, fechaFuncionamiento, ID, fuentePrimaria, eficienciaPromedio);
+    public Solar(String nombre, String direccion, double capMaxima, LocalDateTime fechaHoraFuncionamiento, String fuentePrimaria, double eficienciaPromedio, double superficieCubierta, int cantPaneles, double horasRadiacion) {
+        super(nombre, direccion, capMaxima, fechaHoraFuncionamiento, fuentePrimaria, eficienciaPromedio);
         this.superficieCubierta = superficieCubierta;
         this.cantPaneles = cantPaneles;
         this.horasRadiacion = horasRadiacion;
@@ -27,15 +27,15 @@ public class Solar extends PlantaRenovable {
     }
     
     public double getSuperficieCubierta() {
-        return superficieCubierta;
+        return this.superficieCubierta;
     }
 
     public int getCantPaneles() {
-        return cantPaneles;
+        return this.cantPaneles;
     }
 
-    public int getHorasRadiacion() {
-        return horasRadiacion;
+    public double getHorasRadiacion() {
+        return this.horasRadiacion;
     }
 
     public String toString() {
