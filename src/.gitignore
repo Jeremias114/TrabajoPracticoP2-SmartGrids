@@ -1,0 +1,16 @@
+# Archivos compilados de Java (no se debe subir código binario, solo el fuente)
+*.class
+
+# Carpetas de configuración de VS Code
+.vscode/
+
+# Carpetas y archivos de configuración de Eclipse (por si lo usa tu grupo)
+.metadata/
+.classpath
+.project
+.settings/
+bin/
+
+# Archivos ocultos del sistema operativo (Windows/Mac)
+.DS_Store
+Thumbs.db

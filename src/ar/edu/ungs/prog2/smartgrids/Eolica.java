@@ -1,0 +1,47 @@
+package ar.edu.ungs.prog2.smartgrids;
+
+import java.time.LocalDate;
+
+public class Eolica extends PlantaRenovable {
+    private int cantAerogeneradores;
+    private double alturaTorres;
+    private double velocidadMinViento;
+
+    public Eolica(String nombre, String direccion, double capMaxima, LocalDate fechaFuncionamiento, int ID,
+            String fuentePrimaria, double eficienciaPromedio, int cantAerogeneradores, double alturaTorres, double velocidadMinViento) {
+        super(nombre, direccion, capMaxima, fechaFuncionamiento, ID, fuentePrimaria, eficienciaPromedio);
+        this.cantAerogeneradores = cantAerogeneradores;
+        this.alturaTorres = alturaTorres;
+        this.velocidadMinViento = velocidadMinViento;
+    }
+    
+    @Override
+    public boolean nuncaCumplioCuota() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'nuncaCumplioCuota'");
+    }
+
+    @Override
+    public boolean cumpleCuota(Registro registro) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'cumpleCuota'");
+    }
+
+    public int getCantAerogeneradores() {
+        return cantAerogeneradores;
+    }
+
+    public double getAlturaTorres() {
+        return alturaTorres;
+    }
+
+    public double getVelocidadMinViento() {
+        return velocidadMinViento;
+    }
+    
+    public String toString() {
+        return "Eolica [cantAerogeneradores=" + cantAerogeneradores + ", alturaTorres=" + alturaTorres
+                + ", velocidadMinViento=" + velocidadMinViento + "]";
+    }
+
+}
