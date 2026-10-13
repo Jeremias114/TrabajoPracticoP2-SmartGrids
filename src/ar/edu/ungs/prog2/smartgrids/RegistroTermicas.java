@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 public class RegistroTermicas extends Registro {
     private double  cantCO2Generado;
 
-    public RegistroTermicas(LocalDateTime fechaYhora, double energiaGenerada, int cantIncidencias, int IDRegistro, int IDPlanta, double cantCO2Generado) {
-        super(fechaYhora, energiaGenerada, cantIncidencias, IDRegistro, IDPlanta);
+    public RegistroTermicas(LocalDateTime fechaYhora, double energiaGenerada, int cantIncidencias, String IDPlanta, double cantCO2Generado) {
+        super(fechaYhora, energiaGenerada, cantIncidencias, IDPlanta);
         this.cantCO2Generado = cantCO2Generado;
     }
 
     public double getCantCO2Generado() {
-        return cantCO2Generado;
+        return this.cantCO2Generado;
     }
 
     public String toString() {

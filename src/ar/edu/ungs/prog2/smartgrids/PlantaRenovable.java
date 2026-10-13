@@ -7,7 +7,7 @@ public abstract class PlantaRenovable extends Planta {
     private double eficienciaPromedio;
 
     public PlantaRenovable(String nombre, String direccion, double capMaxima, LocalDate fechaFuncionamiento, int ID, String fuentePrimaria, double eficienciaPromedio) {
-        super(nombre, direccion, capMaxima, fechaFuncionamiento, ID);
+        super(nombre, direccion, capMaxima, fechaFuncionamiento);
         this.fuentePrimaria = fuentePrimaria;
         this.eficienciaPromedio = eficienciaPromedio;
     }
@@ -16,11 +16,11 @@ public abstract class PlantaRenovable extends Planta {
     public abstract boolean nuncaCumplioCuota(); //metodo abstracto que obliga a las subclases a implementarlo, ya que PlantaRenovable es abstracta y no se puede instanciar.
 
     public String getFuentePrimaria() {
-        return fuentePrimaria;
+        return this.fuentePrimaria;
     }
 
     public double getEficienciaPromedio() {
-        return eficienciaPromedio;
+        return this.eficienciaPromedio;
     }
 
     public String toString() {

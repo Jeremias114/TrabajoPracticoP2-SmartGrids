@@ -8,7 +8,7 @@ public class PlantaNoRenovable extends Planta {
     private double capacidadCombustible;
 
     public PlantaNoRenovable(String nombre, String direccion, double capMaxima,LocalDate fechaFuncionamiento, int ID, String tipoCombustible, double objetivoEmision, double capacidadCombustible) {
-        super(nombre, direccion, capMaxima, fechaFuncionamiento, ID);
+        super(nombre, direccion, capMaxima, fechaFuncionamiento);
         this.tipoCombustible = tipoCombustible;
         this.objetivoEmision = objetivoEmision;
         this.capacidadCombustible = capacidadCombustible;
@@ -27,15 +27,15 @@ public class PlantaNoRenovable extends Planta {
     }
     
     public String getTipoCombustible() {
-        return tipoCombustible;
+        return this.tipoCombustible;
     }
     
     public double getObjetivoEmision() {
-        return objetivoEmision;
+        return this.objetivoEmision;
     }
 
     public double getCapacidadCombustible() {
-        return capacidadCombustible;
+        return this.capacidadCombustible;
     }
 
     public String toString() {

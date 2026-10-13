@@ -2,6 +2,7 @@ package ar.edu.ungs.prog2.smartgrids;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Planta
@@ -12,16 +13,16 @@ public abstract class Planta {
     private double capMaxima;
     private boolean estado;
     private LocalDate fechaFuncionamiento;
-    private int ID;
+    private String ID;
     private ArrayList<Registro> registros;
 
-    public Planta(String nombre, String direccion, double capMaxima, LocalDate fechaFuncionamiento, int ID) {
+    public Planta(String nombre, String direccion, double capMaxima, LocalDate fechaFuncionamiento) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.capMaxima = capMaxima;
         this.fechaFuncionamiento = fechaFuncionamiento;
         this.estado = true;
-        this.ID = ID;
+        this.ID = UUID.randomUUID().toString();
         this.registros = new ArrayList<>();
     }
 
@@ -47,24 +48,24 @@ public abstract class Planta {
     
     public abstract boolean cumpleCuota(Registro registro); //metodo abstracto que será implementado en las subclases
 
-    public int getID() {
-        return ID;
+    public String getID() {
+        return this.ID;
     }
 
     public boolean getEstado() {
-        return estado;
+        return this.estado;
     }
 
     public ArrayList<Registro> getRegistros() {
-        return registros;
+        return this.registros;
     }
 
     public LocalDate getFechaFuncionamiento() {
-        return fechaFuncionamiento;
+        return this.fechaFuncionamiento;
     }
 
     public double getCapMaxima() {
-        return capMaxima;
+        return this.capMaxima;
     }
 
     public String toString() {

@@ -1,6 +1,7 @@
 package ar.edu.ungs.prog2.smartgrids;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Registro
@@ -10,41 +11,41 @@ public class Registro {
     private LocalDateTime fechaYhora;
     private double energiaGenerada;
     private int cantIncidencias;
-    private int IDRegistro;
-    private int IDPlanta;
+    private String IDRegistro;
+    private String IDPlanta;
 
 
-    public Registro(LocalDateTime fechaYhora, double energiaGenerada, int cantIncidencias, int IDRegistro, int IDPlanta) {
+    public Registro(LocalDateTime fechaYhora, double energiaGenerada, int cantIncidencias, String IDPlanta) {
         this.fechaYhora = fechaYhora;
         this.energiaGenerada = energiaGenerada;
         this.cantIncidencias = cantIncidencias;
-        this.IDRegistro = IDRegistro;
+        this.IDRegistro = UUID.randomUUID().toString();
         this.IDPlanta = IDPlanta;
     }
 
 
     public LocalDateTime getFechaYhora() {
-        return fechaYhora;
+        return this.fechaYhora;
     }
 
 
     public double getEnergiaGenerada() {
-        return energiaGenerada;
+        return this.energiaGenerada;
     }
 
 
     public int getCantIncidencias() {
-        return cantIncidencias;
+        return this.cantIncidencias;
     }
 
 
-    public int getIDRegistro() {
-        return IDRegistro;
+    public String getIDRegistro() {
+        return this.IDRegistro;
     }
 
 
-    public int getIDPlanta() {
-        return IDPlanta;
+    public String getIDPlanta() {
+        return this.IDPlanta;
     }
 
 
