@@ -1,6 +1,7 @@
 package ar.edu.ungs.prog2.smartgrids;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -60,8 +61,10 @@ public abstract class Planta {
         return this.registros;
     }
 
-    public LocalDateTime getFechaHoraFuncionamiento() {
-        return this.fechaHoraFuncionamiento;
+    public String getFechaHoraFuncionamiento() {
+
+        DateTimeFormatter formatoEstricto = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        return this.fechaHoraFuncionamiento.format(formatoEstricto);
     }
 
     public double getCapMaxima() {

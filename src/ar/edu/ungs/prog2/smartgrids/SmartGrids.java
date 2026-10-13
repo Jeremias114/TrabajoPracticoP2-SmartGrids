@@ -2,7 +2,9 @@ package ar.edu.ungs.prog2.smartgrids;
 
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDateTime;
 
@@ -14,7 +16,7 @@ public class SmartGrids implements ISmartGrids {
     private HashMap<String, Planta> plantas;
 
     public SmartGrids() {
-        this.plantas = new HashMap<>();
+        this.plantas = new LinkedHashMap<>();
     }
 
     public boolean validarFechaHora(String fechaHora) {
@@ -117,8 +119,15 @@ public class SmartGrids implements ISmartGrids {
 
     @Override
     public List<String> consultarPlantas() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'consultarPlantas'");
+        ArrayList<String> listaPlantas = new ArrayList<>();
+
+        for(Planta planta : plantas.values()){
+            String estado = planta.getEstado() ? "ACTIVA" : "INACTIVA";
+            String infoPlanta = planta.getNombre() + " (" + estado + "): "  + planta.getFechaHoraFuncionamiento();
+
+            listaPlantas.add(infoPlanta);
+        }
+        return listaPlantas;
     }
 
     @Override
