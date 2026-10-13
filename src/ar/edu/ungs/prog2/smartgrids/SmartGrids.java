@@ -33,7 +33,13 @@ public class SmartGrids implements ISmartGrids {
             double superficieCubierta, int cantidadPaneles, double horasRadiacionDiaria) {
         
         if(nombre == null || direccion == null || capacidadMaxima <= 0 || fechaHoraPuestaEnFuncionamiento == null || !validarFechaHora(fechaHoraPuestaEnFuncionamiento) || fuentePrimaria == null || eficienciaPromedio <= 0 || superficieCubierta <= 0 || cantidadPaneles <= 0 || horasRadiacionDiaria <= 0){
-            throw new IllegalArgumentException ("Error: Datos inválidos para registrar la planta solar.");
+            throw new RuntimeException ("Error: Datos inválidos para registrar la planta solar.");
+        }
+
+        for(Planta planta : plantas.values()){
+            if(planta.getNombre().equals(nombre)){
+                throw new RuntimeException("Error: Ya existe una planta Solar con el nombre " + nombre);
+            }
         }
 
         LocalDateTime fechaHoraPuestaEnFuncionamientoConvertida = LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento); // convierte el string a LocalDateTime
@@ -49,7 +55,13 @@ public class SmartGrids implements ISmartGrids {
             int cantidadAerogeneradores, double alturaTorres, double velocidadMinimaViento) {
         
         if(nombre == null || direccion == null || capacidadMaxima <= 0 || fechaHoraPuestaEnFuncionamiento == null || !validarFechaHora(fechaHoraPuestaEnFuncionamiento) || fuentePrimaria == null || eficienciaPromedio <= 0 || cantidadAerogeneradores <= 0 || alturaTorres <= 0 || velocidadMinimaViento <= 0){
-            throw new IllegalArgumentException ("Error: Datos inválidos para registrar la planta eólica.");
+            throw new RuntimeException ("Error: Datos inválidos para registrar la planta eólica.");
+        }
+
+        for(Planta planta : plantas.values()){
+            if(planta.getNombre().equals(nombre)){
+                throw new RuntimeException("Error: Ya existe una planta Eolica con el nombre " + nombre);
+            }
         }
 
         LocalDateTime fechaHoraPuestaEnFuncionamientoConvertida = LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento); // convierte el string a LocalDateTime
@@ -65,7 +77,13 @@ public class SmartGrids implements ISmartGrids {
             int cantidadTurbinas, double capacidadEmbalse) {
         
         if(nombre == null || direccion == null || capacidadMaxima <= 0 || fechaHoraPuestaEnFuncionamiento == null || !validarFechaHora(fechaHoraPuestaEnFuncionamiento) || fuentePrimaria == null || eficienciaPromedio <= 0 || cantidadTurbinas <= 0 || capacidadEmbalse <= 0){
-            throw new IllegalArgumentException ("Error: Datos inválidos para registrar la planta hidráulica.");
+            throw new RuntimeException ("Error: Datos inválidos para registrar la planta hidráulica.");
+        }
+
+        for(Planta planta : plantas.values()){
+            if(planta.getNombre().equals(nombre)){
+                throw new RuntimeException("Error: Ya existe una planta hidraulica con el nombre " + nombre);
+            }
         }
 
         LocalDateTime fechaHoraPuestaEnFuncionamientoConvertida = LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento); // convierte el string a LocalDateTime
@@ -81,7 +99,13 @@ public class SmartGrids implements ISmartGrids {
             double capacidadAlmacenamientoCombustible) {
         
         if(nombre == null || direccion == null || capacidadMaxima <= 0 || fechaHoraPuestaEnFuncionamiento == null || !validarFechaHora(fechaHoraPuestaEnFuncionamiento) || tipoCombustible == null || objetivoEmisionesCo2PorHora <= 0 || capacidadAlmacenamientoCombustible <= 0){
-            throw new IllegalArgumentException ("Error: Datos inválidos para registrar la planta térmica.");
+            throw new RuntimeException ("Error: Datos inválidos para registrar la planta térmica.");
+        }
+
+        for(Planta planta : plantas.values()){
+            if(planta.getNombre().equals(nombre)){
+                throw new RuntimeException("Error: Ya existe una planta Termica con el nombre " + nombre);
+            }
         }
 
         LocalDateTime fechaHoraPuestaEnFuncionamientoConvertida = LocalDateTime.parse(fechaHoraPuestaEnFuncionamiento); // convierte el string a LocalDateTime

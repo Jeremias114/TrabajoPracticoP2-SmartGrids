@@ -68,6 +68,15 @@ public abstract class Planta {
         return this.capMaxima;
     }
 
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public String getDireccion() {
+        return this.direccion;
+    }
+
+
     public String toString() {
         return "Planta [nombre=" + nombre + ", direccion=" + direccion + ", capMaxima=" + capMaxima + ", estado="
                 + estado + ", fechaFuncionamiento=" + fechaHoraFuncionamiento + ", ID=" + ID + "]";
