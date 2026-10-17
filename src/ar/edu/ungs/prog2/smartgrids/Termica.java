@@ -22,6 +22,11 @@ public class Termica extends PlantaNoRenovable {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'nuncaCumplioCuota'");
     }
+    
+    @Override
+    public double capacidadMinimaCuota() {
+    	return getCapMaxima() / 2.0;
+    }
 
     public double getObjetivoEmisionCO2() {
         return this.objetivoEmisionCO2;

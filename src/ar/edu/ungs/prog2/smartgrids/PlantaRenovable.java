@@ -17,7 +17,12 @@ public abstract class PlantaRenovable extends Planta {
 
     @Override
     public abstract boolean cumpleCuota(Registro registro); //metodo abstracto que será implementado en las subclases
-
+    
+    @Override
+    public double capacidadMinimaCuota() {
+    	return getCapMaxima() * this.eficienciaPromedio;
+    }
+    
     public String getFuentePrimaria() {
         return this.fuentePrimaria;
     }
@@ -30,4 +35,5 @@ public abstract class PlantaRenovable extends Planta {
         return "PlantaRenovable [fuentePrimaria=" + fuentePrimaria + ", eficienciaPromedio=" + eficienciaPromedio + "]";
     }
 
+    
 }

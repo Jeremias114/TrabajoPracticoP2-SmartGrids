@@ -132,14 +132,19 @@ public class SmartGrids implements ISmartGrids {
 
     @Override
     public double capacidadMinimaCuota(String nombre) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'capacidadMinimaCuota'");
+    	for(Planta planta : plantas.values()) {
+        	if(planta.getNombre().equals(nombre)) {
+        		return planta.capacidadMinimaCuota();
+        	}
+        }
+        
+        throw new RuntimeException("No existe planta con ese nombre " + nombre);
     }
 
     @Override
     public void activarPlanta(String nombre, String fechaHora) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'activarPlanta'");
+    	// TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'capacidadMinimaCuota'");
     }
 
     @Override

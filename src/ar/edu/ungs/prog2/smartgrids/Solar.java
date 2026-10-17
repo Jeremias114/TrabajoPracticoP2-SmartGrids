@@ -26,6 +26,11 @@ public class Solar extends PlantaRenovable {
         throw new UnsupportedOperationException("Unimplemented method 'cumpleCuota'");
     }
     
+    @Override
+    public double capacidadMinimaCuota() {
+    	return getCapMaxima() * getEficienciaPromedio() * getHorasRadiacion() / 24.0;
+    }
+    
     public double getSuperficieCubierta() {
         return this.superficieCubierta;
     }

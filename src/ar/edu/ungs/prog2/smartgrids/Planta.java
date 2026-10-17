@@ -84,4 +84,6 @@ public abstract class Planta {
         return "Planta [nombre=" + nombre + ", direccion=" + direccion + ", capMaxima=" + capMaxima + ", estado="
                 + estado + ", fechaFuncionamiento=" + fechaHoraFuncionamiento + ", ID=" + ID + "]";
     }
+    
+    public abstract double capacidadMinimaCuota();
 }
