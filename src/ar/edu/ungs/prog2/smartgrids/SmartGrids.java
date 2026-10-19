@@ -143,26 +143,69 @@ public class SmartGrids implements ISmartGrids {
 
     @Override
     public void activarPlanta(String nombre, String fechaHora) {
-    	// TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'capacidadMinimaCuota'");
+    	for(Planta planta : plantas.values()) {
+    		if(planta.getNombre().equals(nombre)) {
+    			if(!validarFechaHora(fechaHora)) {
+    				throw new RuntimeException("Fecha y hora invalidas");
+    			}
+    			
+    			planta.actualizarEstado(true);
+    			return;
+    		}
+    	}
+    	
+    	throw new RuntimeException("No existe planta con ese nombre: " + nombre);
     }
 
     @Override
     public void desactivarPlanta(String nombre, String fechaHora) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'desactivarPlanta'");
+        for(Planta planta : plantas.values()) {
+        	if(planta.getNombre().equals(nombre)) {
+        		if(!validarFechaHora(fechaHora)) {
+        			throw new RuntimeException("Fecha y hora invalidas");
+        		}
+        		
+        		planta.actualizarEstado(false);
+        		return;
+        	}
+        }
+        
+        throw new RuntimeException("No existe planta con ese nombre: " + nombre);
     }
 
     @Override
     public boolean estaActiva(String nombre) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'estaActiva'");
+        for(Planta planta : plantas.values()) {
+        	if(planta.getNombre().equals(nombre)) {
+        		return planta.getEstado();
+        	}
+        }
+        
+        throw new RuntimeException("No existe planta con ese nombre: " + nombre);
     }
 
     @Override
     public void registrarMonitoreo(String nombre, String fechaHora, double energiaGenerada, int incidencias) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registrarMonitoreo'");
+        if(!validarFechaHora(fechaHora)) {
+        	throw new RuntimeException("Fecha y hora inválidas");
+        }
+        
+        for(Planta planta : plantas.values()){
+        	if(planta.getNombre().equals(nombre)) {
+        		if(!planta.getEstado()) {
+        			throw new RuntimeException("No se puede registrar un monitoreo, la planta esta inactiva");
+        		}
+        	
+        	
+        	LocalDateTime fecha = LocalDateTime.parse(fechaHora);
+        	
+        	Registro registro = new Registro(fecha,energiaGenerada,incidencias,planta.getID());
+        	planta.agregarRegistro(registro);
+        	return;
+        	}
+        }
+        
+        throw new RuntimeException("No existe planta con ese nombre: " + nombre);
     }
 
     @Override
@@ -181,8 +224,13 @@ public class SmartGrids implements ISmartGrids {
 
     @Override
     public double totalGenerado(String nombre) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'totalGenerado'");
+        for(Planta planta : plantas.values()) {
+        	if(planta.getNombre().equals(nombre)) {
+        		return planta.totalGenerado();
+        	}
+        }
+        
+        throw new RuntimeException("No existe planta con ese nombre: " + nombre);
     }
 
     @Override

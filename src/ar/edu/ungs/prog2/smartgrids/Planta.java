@@ -34,6 +34,10 @@ public abstract class Planta {
     }
 
     public void agregarRegistro(Registro registro) {
+    	if(!this.estado) {
+    		throw new IllegalStateException("No se puede registrar un monitoreo en una planta inactiva");
+    	}
+    	
         this.registros.add(registro);
     }
 
