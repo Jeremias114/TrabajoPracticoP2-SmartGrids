@@ -154,7 +154,7 @@ public class SmartGrids implements ISmartGrids {
     		}
     	}
     	
-    	throw new RuntimeException("No existe planta con ese nombre: " + nombre);
+    	throw new RuntimeException("No existe planta con este nombre: " + nombre);
     }
 
     @Override
@@ -170,7 +170,7 @@ public class SmartGrids implements ISmartGrids {
         	}
         }
         
-        throw new RuntimeException("No existe planta con ese nombre: " + nombre);
+        throw new RuntimeException("No existe planta con este nombre: " + nombre);
     }
 
     @Override
@@ -181,7 +181,7 @@ public class SmartGrids implements ISmartGrids {
         	}
         }
         
-        throw new RuntimeException("No existe planta con ese nombre: " + nombre);
+        throw new RuntimeException("No existe planta con este nombre: " + nombre);
     }
 
     @Override
@@ -221,7 +221,7 @@ public class SmartGrids implements ISmartGrids {
         	}
         }
         
-        throw new RuntimeException("No existe planta con ese nombre: " + nombre);
+        throw new RuntimeException("No existe planta con este nombre: " + nombre);
     }
 
     @Override
@@ -313,13 +313,29 @@ public class SmartGrids implements ISmartGrids {
         	}
         }
         
-        throw new RuntimeException("No existe planta con ese nombre: " + nombre);
+        throw new RuntimeException("No existe planta con este nombre: " + nombre);
     }
 
     @Override
     public int[] incidenciasPorHora(String nombre) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'incidenciasPorHora'");
+        if(nombre == null) {
+            throw new RuntimeException("Nombre de planta inválido");
+        }
+
+        int[] incidenciasPorHora = new int[24];
+
+        for(Planta planta : plantas.values()){
+            if(planta.getNombre().equals(nombre)){
+                for(Registro registro : planta.getRegistros()){
+                    int hora = registro.getFechaYhora().getHour();
+                    incidenciasPorHora[hora] += registro.getCantIncidencias();
+                }
+
+                return incidenciasPorHora;
+            }
+        }
+
+        throw new RuntimeException("No existe planta con este nombre: " + nombre);
     }
 
     @Override
