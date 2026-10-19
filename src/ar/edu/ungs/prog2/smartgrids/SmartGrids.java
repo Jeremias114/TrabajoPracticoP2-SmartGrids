@@ -189,12 +189,28 @@ public class SmartGrids implements ISmartGrids {
         if(!validarFechaHora(fechaHora)) {
         	throw new RuntimeException("Fecha y hora inválidas");
         }
+
+        if(energiaGenerada < 0 || incidencias < 0) {
+        	throw new RuntimeException("Energia generada o incidencias negativas");
+        }
         
         for(Planta planta : plantas.values()){
         	if(planta.getNombre().equals(nombre)) {
         		if(!planta.getEstado()) {
         			throw new RuntimeException("No se puede registrar un monitoreo, la planta esta inactiva");
         		}
+
+                if(LocalDateTime.parse(planta.getFechaHoraFuncionamiento()).isAfter(LocalDateTime.parse(fechaHora))) {
+                    throw new RuntimeException("No se puede registrar un monitoreo, la fecha y hora es anterior a la puesta en funcionamiento de la planta");
+                }
+
+                for(Registro registro : planta.getRegistros()) {
+                    if(registro.getFechaYhora().equals(LocalDateTime.parse(fechaHora))) {
+                        throw new RuntimeException("No se puede registrar un monitoreo, ya existe un registro para esa fecha y hora");
+                    }
+                }
+
+
         	
         	
         	LocalDateTime fecha = LocalDateTime.parse(fechaHora);
@@ -211,15 +227,82 @@ public class SmartGrids implements ISmartGrids {
     @Override
     public void registrarMonitoreo(String nombre, String fechaHora, double energiaGenerada, int incidencias,
             double velocidadViento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registrarMonitoreo'");
+        if(!validarFechaHora(fechaHora)) {
+        	throw new RuntimeException("Fecha y hora inválidas");
+        }
+
+        if(energiaGenerada < 0 || incidencias < 0 || velocidadViento < 0) {
+        	throw new RuntimeException("Energia generada, incidencias o velocidad del viento negativas");
+        }
+
+        for(Planta planta : plantas.values()){
+            	if(planta.getNombre().equals(nombre)) {
+            		if(!planta.getEstado()) {
+            			throw new RuntimeException("No se puede registrar un monitoreo, la planta esta inactiva");
+            		}
+    
+                    if(LocalDateTime.parse(planta.getFechaHoraFuncionamiento()).isAfter(LocalDateTime.parse(fechaHora))) {
+                        throw new RuntimeException("No se puede registrar un monitoreo, la fecha y hora es anterior a la puesta en funcionamiento de la planta");
+                    }
+    
+                    for(Registro registro : planta.getRegistros()) {
+                        if(registro.getFechaYhora().equals(LocalDateTime.parse(fechaHora))) {
+                            throw new RuntimeException("No se puede registrar un monitoreo, ya existe un registro para esa fecha y hora");
+                        }
+                    }
+    
+                    if(!(planta instanceof Eolica)) {
+                        throw new RuntimeException("No se puede registrar un monitoreo con velocidad del viento, la planta no es eólica");
+                    }
+            	
+            	LocalDateTime fecha = LocalDateTime.parse(fechaHora);
+            	
+            	RegistroEolicas registroEolica = new RegistroEolicas(fecha,energiaGenerada,incidencias,planta.getID(),velocidadViento);
+            	planta.agregarRegistro(registroEolica);
+            	return;
+            	}
+        }
     }
 
     @Override
     public void registrarMonitoreo(String nombre, String fechaHora, double energiaGenerada, int incidencias,
             double co2Emitido, double combustibleUtilizado) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registrarMonitoreo'");
+        if(!validarFechaHora(fechaHora)) {
+        	throw new RuntimeException("Fecha y hora inválidas");
+        }
+
+        if(energiaGenerada < 0 || incidencias < 0 || co2Emitido < 0 || combustibleUtilizado < 0) {
+        	throw new RuntimeException("Energia generada, incidencias, co2 emitido o combustible utilizado negativas");
+        }
+
+        for(Planta planta : plantas.values()){
+        	if(planta.getNombre().equals(nombre)) {
+        		if(!planta.getEstado()) {
+        			throw new RuntimeException("No se puede registrar un monitoreo, la planta esta inactiva");
+        		}
+
+                if(LocalDateTime.parse(planta.getFechaHoraFuncionamiento()).isAfter(LocalDateTime.parse(fechaHora))) {
+                    throw new RuntimeException("No se puede registrar un monitoreo, la fecha y hora es anterior a la puesta en funcionamiento de la planta");
+                }
+
+                for(Registro registro : planta.getRegistros()) {
+                    if(registro.getFechaYhora().equals(LocalDateTime.parse(fechaHora))) {
+                        throw new RuntimeException("No se puede registrar un monitoreo, ya existe un registro para esa fecha y hora");
+                    }
+                }
+
+                if(!(planta instanceof Termica)) {
+                    throw new RuntimeException("No se puede registrar un monitoreo con co2 emitido y combustible utilizado, la planta no es térmica");
+                }
+        	
+        	
+        	LocalDateTime fecha = LocalDateTime.parse(fechaHora);
+        	
+        	RegistroTermicas registroTermica = new RegistroTermicas(fecha,energiaGenerada,incidencias,planta.getID(),co2Emitido,combustibleUtilizado);
+        	planta.agregarRegistro(registroTermica);
+        	return;
+        	}
+        }
     }
 
     @Override
