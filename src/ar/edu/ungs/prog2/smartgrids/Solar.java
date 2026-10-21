@@ -22,8 +22,7 @@ public class Solar extends PlantaRenovable {
 
     @Override
     public boolean cumpleCuota(Registro registro) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cumpleCuota'");
+        return registro.getEnergiaGenerada() >= capacidadMinimaCuota();
     }
     
     @Override

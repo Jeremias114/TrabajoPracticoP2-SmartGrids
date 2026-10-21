@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * SmartGrids
@@ -340,8 +341,42 @@ public class SmartGrids implements ISmartGrids {
 
     @Override
     public int[] histogramaCumplimiento(String nombre, String fechaDesde, String fechaHasta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'histogramaCumplimiento'");
+    	if (nombre == null || fechaDesde == null || fechaHasta == null) {
+    		throw new RuntimeException("Los datos no pueden ser nulos");
+    	}
+    	
+    	LocalDate desde;
+    	LocalDate hasta;
+    	
+    	try {
+    		desde = LocalDate.parse(fechaDesde);
+    		hasta = LocalDate.parse(fechaHasta);
+    	} catch(java.time.format.DateTimeParseException e){
+    		throw new RuntimeException("Formato de fecha inválido");
+    	}
+    	
+    	if(desde.isAfter(hasta)) {
+    		throw new RuntimeException("La fecha inicial no puede ser posterior a la final");
+    	}
+    	
+        for(Planta planta : plantas.values()) {
+        	if(planta.getNombre().equals(nombre)) {
+        		int[] histograma = new int[24];
+        		
+        		for(Registro registro : planta.getRegistros()) {
+        			LocalDate fechaRegistro = registro.getFechaYhora().toLocalDate();
+        			
+        			if(!fechaRegistro.isBefore(desde) && !fechaRegistro.isAfter(hasta) && planta.cumpleCuota(registro)) {
+        				int hora = registro.getFechaYhora().getHour();
+        				histograma[hora]++;
+        			}
+        		}
+        		
+        		return histograma;
+        	}
+        }
+        
+        throw new RuntimeException("No existe planta con ese nombre: " + nombre);
     }
 
     @Override
