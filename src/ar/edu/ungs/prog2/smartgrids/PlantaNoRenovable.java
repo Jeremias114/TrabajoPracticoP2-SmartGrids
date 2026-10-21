@@ -12,10 +12,6 @@ public abstract class PlantaNoRenovable extends Planta {
         this.capacidadCombustible = capacidadCombustible;
     }
     
-
-    @Override
-    public abstract boolean nuncaCumplioCuota(); //metodo abstracto que obliga a las subclases a implementarlo, ya que PlantaNoRenovable es abstracta y no se puede instanciar.
-
     @Override
     public abstract boolean cumpleCuota(Registro registro); //metodo abstracto que será implementado en las subclases
     

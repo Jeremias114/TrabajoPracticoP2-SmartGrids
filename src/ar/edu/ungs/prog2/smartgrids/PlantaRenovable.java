@@ -11,9 +11,6 @@ public abstract class PlantaRenovable extends Planta {
         this.fuentePrimaria = fuentePrimaria;
         this.eficienciaPromedio = eficienciaPromedio;
     }
-    
-    @Override
-    public abstract boolean nuncaCumplioCuota(); //metodo abstracto que obliga a las subclases a implementarlo, ya que PlantaRenovable es abstracta y no se puede instanciar.
 
     @Override
     public abstract boolean cumpleCuota(Registro registro); //metodo abstracto que será implementado en las subclases

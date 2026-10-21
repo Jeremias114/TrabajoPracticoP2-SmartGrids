@@ -3,6 +3,7 @@ package ar.edu.ungs.prog2.smartgrids;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.time.format.DateTimeParseException;
@@ -397,8 +398,16 @@ public class SmartGrids implements ISmartGrids {
 
     @Override
     public List<String> plantasQueNuncaCumplieronCuota() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'plantasQueNuncaCumplieronCuota'");
+        List<String> resultado = new ArrayList<>();
+        
+        for(Planta planta : plantas.values()) {
+        	if(planta.nuncaCumplioCuota()) {
+        		resultado.add(planta.getNombre());
+        	}
+        }
+        
+        Collections.sort(resultado);
+        return resultado;
     }
 
     @Override

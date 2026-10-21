@@ -14,14 +14,12 @@ public class Hidraulica extends PlantaRenovable {
     
     @Override
     public boolean nuncaCumplioCuota() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'nuncaCumplioCuota'");
+        return super.nuncaCumplioCuota();
     }
 
     @Override
     public boolean cumpleCuota(Registro registro) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cumpleCuota'");
+        return registro.getEnergiaGenerada() >= capacidadMinimaCuota();
     }
 
     public int getCantTurbinas() {

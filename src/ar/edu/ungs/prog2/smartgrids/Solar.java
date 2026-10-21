@@ -16,8 +16,7 @@ public class Solar extends PlantaRenovable {
     
     @Override
     public boolean nuncaCumplioCuota() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'nuncaCumplioCuota'");
+        return super.nuncaCumplioCuota();
     }
 
     @Override

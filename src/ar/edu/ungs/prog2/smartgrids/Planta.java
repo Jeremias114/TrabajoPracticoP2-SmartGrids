@@ -49,7 +49,14 @@ public abstract class Planta {
         return total;
     }
 
-    public abstract boolean nuncaCumplioCuota(); //metodo abstracto que será implementado en las subclases
+    public boolean nuncaCumplioCuota() {
+    	for(Registro registro : registros) {
+    		if(cumpleCuota(registro)) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
     
     public abstract boolean cumpleCuota(Registro registro); //metodo abstracto que será implementado en las subclases
 
