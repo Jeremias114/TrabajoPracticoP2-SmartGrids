@@ -381,8 +381,18 @@ public class SmartGrids implements ISmartGrids {
 
     @Override
     public Map<String, Integer> plantasRenovablesPorFuente() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'plantasRenovablesPorFuente'");
+        Map<String,Integer> resultado = new HashMap<>();
+        
+        for(Planta planta : plantas.values()) {
+        	if(planta instanceof PlantaRenovable) {
+        		PlantaRenovable renovable = (PlantaRenovable) planta;
+        		
+        		String fuente = renovable.getFuentePrimaria();
+        		
+        		resultado.put(fuente, resultado.getOrDefault(fuente, 0) + 1); //busca cuantas plantas hay registradas para esa fuente
+        	}
+        }
+        return resultado;
     }
 
     @Override
