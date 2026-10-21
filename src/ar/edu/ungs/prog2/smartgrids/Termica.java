@@ -13,8 +13,13 @@ public class Termica extends PlantaNoRenovable {
 
     @Override
     public boolean cumpleCuota(Registro registro) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cumpleCuota'");
+    	if(!(registro instanceof RegistroTermicas)) {
+    		return false;
+    	}
+    	
+    	RegistroTermicas registroTermico = (RegistroTermicas) registro;
+    	
+        return registro.getEnergiaGenerada() >= capacidadMinimaCuota() && registroTermico.getCantCO2Generado() < objetivoEmisionCO2;
     }
 
     @Override
