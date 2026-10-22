@@ -29,7 +29,7 @@ public abstract class PlantaRenovable extends Planta {
     }
 
     public String toString() {
-        return "PlantaRenovable [fuentePrimaria=" + fuentePrimaria + ", eficienciaPromedio=" + eficienciaPromedio + "]";
+        return super.toString() + ", Fuente Primaria: " + fuentePrimaria + ", Eficiencia Promedio: " + eficienciaPromedio;
     }
 
     

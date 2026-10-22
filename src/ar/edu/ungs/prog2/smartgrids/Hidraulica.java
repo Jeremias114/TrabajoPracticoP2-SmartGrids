@@ -31,7 +31,7 @@ public class Hidraulica extends PlantaRenovable {
     }
     
     public String toString() {
-        return "Hidraulica [cantTurbinas=" + cantTurbinas + ", capacidadEmbalse=" + capacidadEmbalse + "]";
+        return "Hidraulica: " + super.toString() + ", Cantidad De Turbinas: " + cantTurbinas + ", Capacidad Del Embalse: " + capacidadEmbalse;
     }
 
 }

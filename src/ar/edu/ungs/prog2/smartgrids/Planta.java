@@ -92,8 +92,8 @@ public abstract class Planta {
 
 
     public String toString() {
-        return "Planta [nombre=" + nombre + ", direccion=" + direccion + ", capMaxima=" + capMaxima + ", estado="
-                + estado + ", fechaFuncionamiento=" + fechaHoraFuncionamiento + ", ID=" + ID + "]";
+        return "[Nombre: " + nombre + ", Direccion: " + direccion + ", Capacidad Maxima: " + capMaxima + ", Estado:"
+                + (this.getEstado() ? " Activa" : " Inactiva") + ", Fecha puesta en funcionamiento: " + fechaHoraFuncionamiento + ", ID :" + ID.toUpperCase();
     }
     
     public abstract double capacidadMinimaCuota();

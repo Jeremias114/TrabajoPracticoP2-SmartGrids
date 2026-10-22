@@ -21,7 +21,6 @@ public class RegistroTermicas extends Registro {
     }
 
     public String toString() {
-        return "RegistroTermicas [cantCO2Generado=" + cantCO2Generado + ", fechaYhora=" + getFechaYhora() + ", energiaGenerada=" + getEnergiaGenerada() + ", cantIncidencias="
-                + getCantIncidencias() + ", IDRegistro=" + getIDRegistro() + ", IDPlanta=" + getIDPlanta() + "]";
+        return super.toString() + ", Cantidad De CO2 Generado: " + cantCO2Generado + ", Combustible Consumido: " + combustibleConsumido + "]";
     }
 }

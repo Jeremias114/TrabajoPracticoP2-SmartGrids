@@ -15,7 +15,6 @@ public class RegistroEolicas extends Registro {
     }
 
     public String toString() {
-        return "RegistroEolicas [velocidadVientoPromedio=" + velocidadVientoPromedio + ", fechaYhora=" + getFechaYhora() + ", energiaGenerada=" + getEnergiaGenerada() + ", cantIncidencias="
-                + getCantIncidencias() + ", IDRegistro=" + getIDRegistro() + ", IDPlanta=" + getIDPlanta() + "]";
+        return super.toString() + ", Velocidad Del Viento Promedio: " + velocidadVientoPromedio + "]";
     }
 }

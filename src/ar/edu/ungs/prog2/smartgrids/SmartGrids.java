@@ -500,6 +500,13 @@ public String horasSinVelocidadMinimaPorPlantaEolica() {
 
 
     public String toString() {
-        return "SmartGrids [plantas=" + plantas + "]";
+
+        StringBuilder impresion = new StringBuilder();
+
+        for (Planta planta : plantas.values()) {
+            impresion.append(planta.toString()).append("\n").append("\n");
+        }
+        
+        return impresion.toString();
     }
 }

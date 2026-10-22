@@ -42,8 +42,7 @@ public class Solar extends PlantaRenovable {
     }
 
     public String toString() {
-        return "Solar [superficieCubierta=" + superficieCubierta + ", cantPaneles=" + cantPaneles + ", horasRadiacion="
-                + horasRadiacion + "]";
+        return "Solar: " + super.toString() + ", Superficie Cubierta: " + superficieCubierta + ", Cantidad De Paneles: " + cantPaneles + ", Horas De Radiación: " + horasRadiacion + "]";
     }
 
 }

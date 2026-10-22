@@ -25,7 +25,7 @@ public abstract class PlantaNoRenovable extends Planta {
     }
 
     public String toString() {
-        return "PlantaNoRenovable [tipoCombustible=" + tipoCombustible + ", objetivoEmision=" +", capacidadCombustible=" + capacidadCombustible + "]";
+        return super.toString() + ", Tipo De Combustible: " + tipoCombustible + ", Capacidad De Combustible: " + capacidadCombustible;
     }
 
 }

@@ -37,6 +37,6 @@ public class Termica extends PlantaNoRenovable {
     }
 
     public String toString() {
-        return "Termica [objetivoEmisionCO2=" + objetivoEmisionCO2 + "]";
+        return super.toString() + ", Objetivo De Emisión De CO2: " + objetivoEmisionCO2;
     }
 }

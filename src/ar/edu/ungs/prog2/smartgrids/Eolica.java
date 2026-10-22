@@ -21,8 +21,7 @@ public class Eolica extends PlantaRenovable {
 
     @Override
     public boolean cumpleCuota(Registro registro) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cumpleCuota'");
+        return registro.getEnergiaGenerada() >= capacidadMinimaCuota();
     }
 
     public int getCantAerogeneradores() {
@@ -38,8 +37,8 @@ public class Eolica extends PlantaRenovable {
     }
     
     public String toString() {
-        return "Eolica [cantAerogeneradores=" + cantAerogeneradores + ", alturaTorres=" + alturaTorres
-                + ", velocidadMinViento=" + velocidadMinViento + "]";
+        return  "Eolica:" + super.toString() +", Cantidad De Aerogeneradores: " + cantAerogeneradores + ", alturaTorres: " + alturaTorres
+                + ", velocidadMinViento: " + velocidadMinViento + "]";
     }
 
 }

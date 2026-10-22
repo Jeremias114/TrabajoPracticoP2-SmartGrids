@@ -50,7 +50,7 @@ public class Registro {
 
 
     public String toString() {
-        return "Registro [fechaYhora=" + fechaYhora + ", energiaGenerada=" + energiaGenerada + ", cantIncidencias="
-                + cantIncidencias + ", IDRegistro=" + IDRegistro + ", IDPlanta=" + IDPlanta + "]";
+        return "Registro Fecha/Hora: " + fechaYhora + ", Energia Generada: " + energiaGenerada + ", Cantidad Incidencias: "
+                + cantIncidencias + ", ID del Registro: " + IDRegistro + ", ID de la Planta: " + IDPlanta + "]";
     }
 }
