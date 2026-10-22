@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.util.Iterator;
 
 /**
  * SmartGrids
@@ -452,17 +453,17 @@ public String horasSinVelocidadMinimaPorPlantaEolica() {
         int totalEliminados = 0;
 
         for (Planta planta : plantas.values()) {
-            List<Registro> registros = planta.getRegistros();
+            Iterator<Registro> iterador = planta.getRegistros().iterator();
 
-            for (int i = registros.size() - 1; i >= 0; i--) {
-                Registro registro = registros.get(i);
+            while(iterador.hasNext()) {
+            	Registro registro = iterador.next();
+            	
                 if (registro.getEnergiaGenerada() == 0 && registro.getCantIncidencias() == 0) {
-                    registros.remove(i);
+                    iterador.remove();
                     totalEliminados++;
                 }
             }
         }
-
         return totalEliminados;
     }
 
