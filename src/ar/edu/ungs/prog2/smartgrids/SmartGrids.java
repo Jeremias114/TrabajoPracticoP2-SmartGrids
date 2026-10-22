@@ -412,8 +412,29 @@ public class SmartGrids implements ISmartGrids {
 
     @Override
     public String horasSinVelocidadMinimaPorPlantaEolica() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'horasSinVelocidadMinimaPorPlantaEolica'");
+        StringBuilder texto = new StringBuilder();
+
+        for (Planta planta : plantas.values()) {
+            if (planta instanceof Eolica) {
+                Eolica eolica = (Eolica) planta;
+                double velocidadMin = eolica.getVelocidadMinViento();
+
+                texto.append("Planta: ").append(eolica.getNombre()).append(" - Horas sin velocidad mínima: ");
+
+                for (Registro registro : eolica.getRegistros()) {
+                    if (registro instanceof RegistroEolicas) {
+                        RegistroEolicas regEolica = (RegistroEolicas) registro;
+                        if (regEolica.getVelocidadVientoPromedio() < velocidadMin) {
+                            int hora = regEolica.getFechaYhora().getHour();
+                            texto.append(String.format("%02d", hora)).append(" ");
+                        }
+                    }
+                }
+                texto.append("\n");
+            }
+        }
+
+        return texto.toString();
     }
 
     @Override
