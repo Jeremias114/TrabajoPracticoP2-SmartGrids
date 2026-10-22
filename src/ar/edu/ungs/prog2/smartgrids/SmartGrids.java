@@ -410,37 +410,60 @@ public class SmartGrids implements ISmartGrids {
         return resultado;
     }
 
-    @Override
-    public String horasSinVelocidadMinimaPorPlantaEolica() {
-        StringBuilder texto = new StringBuilder();
+  @Override
+public String horasSinVelocidadMinimaPorPlantaEolica() {
+    StringBuilder texto = new StringBuilder();
 
-        for (Planta planta : plantas.values()) {
-            if (planta instanceof Eolica) {
-                Eolica eolica = (Eolica) planta;
-                double velocidadMin = eolica.getVelocidadMinViento();
+    for (Planta planta : plantas.values()) {
+        if (planta instanceof Eolica) {
+            Eolica eolica = (Eolica) planta;
+            double velocidadMin = eolica.getVelocidadMinViento();
 
-                texto.append("Planta: ").append(eolica.getNombre()).append(" - Horas sin velocidad mínima: ");
+            texto.append("Planta: ").append(eolica.getNombre()).append(" - Horas sin velocidad mínima: ");
 
-                for (Registro registro : eolica.getRegistros()) {
-                    if (registro instanceof RegistroEolicas) {
-                        RegistroEolicas regEolica = (RegistroEolicas) registro;
-                        if (regEolica.getVelocidadVientoPromedio() < velocidadMin) {
-                            int hora = regEolica.getFechaYhora().getHour();
-                            texto.append(String.format("%02d", hora)).append(" ");
-                        }
+            java.util.Set<Integer> horasIncumplidas = new java.util.LinkedHashSet<>();
+            java.util.Set<Integer> horasCumplidas = new java.util.HashSet<>();
+
+            for (Registro registro : eolica.getRegistros()) {
+                if (registro instanceof RegistroEolicas) {
+                    RegistroEolicas regEolica = (RegistroEolicas) registro;
+                    int hora = regEolica.getFechaYhora().getHour();
+
+                    if (regEolica.getVelocidadVientoPromedio() >= velocidadMin) {
+                        horasCumplidas.add(hora);
+                    } else {
+                        horasIncumplidas.add(hora);
                     }
                 }
-                texto.append("\n");
+            }
+            horasIncumplidas.removeAll(horasCumplidas);
+            for (int hora : horasIncumplidas) {
+                texto.append(String.format("%02d", hora)).append(" ");
+            }
+            
+            texto.append("\n");
+        }
+    }
+
+    return texto.toString();
+}
+@Override
+    public int limpiarMonitoreosSinDatos() {
+        int totalEliminados = 0;
+
+        for (Planta planta : plantas.values()) {
+            List<Registro> registros = planta.getRegistros();
+
+            for (int i = registros.size() - 1; i >= 0; i--) {
+                Registro registro = registros.get(i);
+                if (registro.getEnergiaGenerada() == 0 && registro.getCantIncidencias() == 0) {
+                    registros.remove(i);
+                    totalEliminados++;
+                }
             }
         }
 
-        return texto.toString();
-    }
-
-    @Override
-    public int limpiarMonitoreosSinDatos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'limpiarMonitoreosSinDatos'");
+        return totalEliminados;
     }
 
     @Override
