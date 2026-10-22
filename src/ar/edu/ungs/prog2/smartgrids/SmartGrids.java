@@ -468,14 +468,34 @@ public String horasSinVelocidadMinimaPorPlantaEolica() {
 
     @Override
     public List<String> plantasOrdenadasPorEnergiaGenerada() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'plantasOrdenadasPorEnergiaGenerada'");
+        List<Planta> listaPlantas = new ArrayList<>(plantas.values());
+
+        listaPlantas.sort((p1, p2) -> Double.compare(p2.totalGenerado(), p1.totalGenerado()));
+
+        List<String> resultado = new ArrayList<>();
+        for (Planta planta : listaPlantas) {
+            resultado.add(planta.getNombre() + ": " + planta.totalGenerado());
+        }
+
+        return resultado;
     }
 
     @Override
     public List<String> plantasInactivasEn(String fechaHora) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'plantasInactivasEn'");
+        if (!validarFechaHora(fechaHora)) {
+            throw new RuntimeException("Fecha y hora inválidas");
+        }
+
+        List<String> plantasInactivas = new ArrayList<>();
+
+        for (Planta planta : plantas.values()) {
+            if (!planta.getEstado()) {
+                plantasInactivas.add(planta.getNombre());
+            }
+        }
+
+        Collections.sort(plantasInactivas); 
+        return plantasInactivas;
     }
 
 
